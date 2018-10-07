@@ -1,0 +1,107 @@
+GRCE - Graph Research and Computing Environment
+===============================================
+
+Installation Instructions
+=========================
+
+GRCE uses CMake for its build and installation procedure.
+
+To compile GRCE you will need
+  * C++-compiler (GNU C++ version 3.4.5 or above is fine)
+  * CMake version 2.4.5 or above
+
+Also you need development files of
+  * GNU Scientific Library (GSL)
+  * The GNU Multiple Precision Arithmetic Library (GMP)
+  * ZThreads library
+  * Fast Light Toolkit (FLTK) version 1.1.x (FLTK 1.3.x may also work,
+    but 1.1.x is recommended)
+  * The OpenGL Utility Library (GLU), implementation from Mesa 3D
+    works fine
+
+Optional dependencies:
+  * libpng for ability to save images in PNG format
+  * zlib library
+
+The command below may be useful for automatic installation of
+development dependencies in Debian-based distributions (like Ubuntu):
+
+  sudo apt-get install cmake g++ libgsl0-dev libgmp-dev libzthread-dev libfltk1.1-dev libglu1-mesa-dev libpng12-dev zlib1g-dev
+
+The command for more recent versions of the distributions:
+
+  sudo apt-get install cmake g++ libgsl-dev libgmp-dev libzthread-dev libfltk1.1-dev libglu1-mesa-dev libpng-dev zlib1g-dev
+
+
+After unpacking the distribution tarball, cd to grce-x.y.z directory.
+The Makefiles can be prepared using the command,
+
+  cmake .
+
+The dot is required. It specifies where the source files are located.
+You can then build GRCE by typing,
+
+  make
+
+and install it by typing,
+
+  make install
+
+The default installation directory prefix is CMake's default which is
+usually /usr/local. Installing in this directory will require root
+privileges on most systems (use "su" or "sudo").
+
+The installation directory can be changed with the
+-D CMAKE_INSTALL_PREFIX option to cmake.
+For example:
+
+  cmake -D CMAKE_INSTALL_PREFIX=/opt .
+  make
+  make install
+
+or
+
+  cmake -D CMAKE_INSTALL_PREFIX=~/my_apps .
+  make
+  make install
+
+
+To perform automatic build and installion you can try one of the
+following scripts:
+
+  ./configure-build-install-default.sh
+  ./configure-build-install-heavy-optimize.sh
+  ./configure-build-install-non-default-gcc.sh
+  ./configure-build-install-icc.sh
+  ./configure-build-install-icc-heavy-optimize.sh
+
+They perform out-of-source build of GRCE inside corresponding _build-*
+directories using specific customizations of the build process (take a
+look inside the scripts for details).
+
+
+Hints for Microsoft Windows
+===========================
+
+GRCE compiles with MinGW/MSYS, and should compile with GNU C++ under
+Cygwin on Microsoft Windows (but do not forget to install all
+dependencies and libraries at first).
+
+For standard MinGW/MSYS installation you should type something like
+
+  cmake -G "MSYS Makefiles" -D MINGW_ROOT_PATH="C:/msys/mingw" -D EXTRA_ROOT_PATH="C:/msys/local" .
+  make
+
+For standalone MinGW installation you should type something like
+
+  cmake -G "MinGW Makefiles" -D MINGW_ROOT_PATH="C:/mingw" -D EXTRA_ROOT_PATH="C:/mydevroot" .
+  mingw32-make
+
+The dot is required. It specifies where the source files are located.
+
+GRCE may also compile using Microsoft Visual C++. Project files can
+be generated using appropriate -G cmake option. For example:
+
+  cmake -G "Visual Studio 9 2008" .
+
+
