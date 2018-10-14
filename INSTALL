@@ -26,11 +26,12 @@ Optional dependencies:
 The command below may be useful for automatic installation of
 development dependencies in Debian-based distributions (like Ubuntu):
 
-  sudo apt-get install cmake g++ libgsl0-dev libgmp-dev libzthread-dev libfltk1.1-dev libglu1-mesa-dev libpng12-dev zlib1g-dev
-
-The command for more recent versions of the distributions:
-
   sudo apt-get install cmake g++ libgsl-dev libgmp-dev libzthread-dev libfltk1.1-dev libglu1-mesa-dev libpng-dev zlib1g-dev
+
+The command for older versions of the distributions (like Ubuntu 12.04
+and 14.04):
+
+  sudo apt-get install cmake g++ libgsl0-dev libgmp-dev libzthread-dev libfltk1.1-dev libglu1-mesa-dev libpng12-dev zlib1g-dev
 
 
 After unpacking the distribution tarball, cd to grce-x.y.z directory.
