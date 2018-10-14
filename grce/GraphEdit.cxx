@@ -27,6 +27,7 @@
 #include "grce/propedit/PropEdit.hpp"
 #include "grce/algo/color/ResetColors.hpp"
 #include <grctk/algo/drawing/GraphMultiRep.hpp>
+#include <FL/Enumerations.H>
 #include <iostream>
 #include <sstream>
 #include <iomanip>
@@ -440,8 +441,15 @@ void GraphEdit::UpdateScale(bool fitToWindow)
   // SetYShift(new_y_shift);
 
   if (vertexCount > 0)
+  {
+#if (FL_MAJOR_VERSION == 1 && FL_MINOR_VERSION < 3)
     position((x_min + GetXShift())*GetScale() + origin_x() + xposition() - max_diam,
              (y_min + GetYShift())*GetScale() + origin_y() + yposition() - max_diam);
+#else
+    scroll_to((x_min + GetXShift())*GetScale() + origin_x() + xposition() - max_diam,
+              (y_min + GetYShift())*GetScale() + origin_y() + yposition() - max_diam);
+#endif
+  }
 }
 
 void
